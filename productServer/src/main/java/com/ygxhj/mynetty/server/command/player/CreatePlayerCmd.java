@@ -29,7 +29,7 @@ public class CreatePlayerCmd extends BaseCmd{
 		player.setLoginTime(date);
 		player.setName(name);
 		player.setPassword(password);
-		player.setGroup(group);
+		player.setGroupId(group);
 		DBService.commitNoCacheUpdate(player);
 		log.info(player.getId() + "|" + player.getName() + "|" + player.getCreateTime() + "|" + player.getLoginTime());
 		CommandResult result = new CommandResult();
