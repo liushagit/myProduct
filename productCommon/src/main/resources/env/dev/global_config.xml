@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
+	<md5 md5Key="mynetty"/>
 	<zone_id id="0" />
 	<zone id="0" name="测试一区" maxPlayerNum="0">
 		<db host="192.168.1.243" port="3306" dbname="mynetty" username="root" password="root" delaytime="0" />

@@ -37,6 +37,10 @@ public class PlayerSet {
 		return player;
 	}
 	
+	public Player getCachPlayer(int playerId){
+		return playerSet.get(playerId);
+	}
+	
 	private Player loadPlayerById(int playerId){
 		PlayerDAO dao = (PlayerDAO)DBManager.getDao(PlayerDAOImpl.class);
 		PlayerExample example = new PlayerExample();

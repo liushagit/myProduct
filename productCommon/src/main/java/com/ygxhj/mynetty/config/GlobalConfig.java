@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.dom4j.Element;
 
+import com.ygxhj.mynetty.util.MD5;
 import com.ygxhj.mynetty.util.XMLUtil;
 
 public class GlobalConfig {
@@ -20,6 +21,8 @@ public class GlobalConfig {
 			Element element = XMLUtil.getRoot(global_config, true);
 			Element zoneIdElement = element.element("zone_id");
 			zoneId = zoneIdElement.attributeValue("id");
+			Element md5Element = element.element("md5");
+			MD5.KEY = md5Element.attributeValue("md5Key");
 			List<Element> elements = element.elements("zone");
 			for (Element e : elements) {
 				Zone zone = new Zone();

@@ -15,7 +15,7 @@
     <sqlMapGenerator targetPackage="com.ygxhj.mynetty.core.maps" targetProject="productServer\src\main\resources" />
     <daoGenerator targetPackage="com.ygxhj.mynetty.core.dao" targetProject="productServer\src\main\java" type="GENERIC-CI" />
     <!--  -->
-    <table tableName="product">
+    <table tableName="player">
 		<property name="rootClass" value="com.ygxhj.mynetty.core.BaseObject" />
 		<generatedKey column="id" sqlStatement="MySql" identity="true" />
     </table>
