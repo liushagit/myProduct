@@ -16,7 +16,7 @@ public abstract class BaseCmd extends Command{
 	public CommandResult exec(CommandRequest request) throws ProductException{
 		String cmd = request.getCmd();
 		Player player = null;
-		if("u_L".equals(cmd)){
+		if(!"u_L".equals(cmd)){
 			player = PlayerSet.getInstance().getPlayer(request.getPlayerId());
 		}else{
 			player = PlayerSet.getInstance().getCachPlayer(request.getPlayerId());

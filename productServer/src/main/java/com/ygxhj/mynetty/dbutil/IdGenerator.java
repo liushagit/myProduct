@@ -11,7 +11,7 @@ public class IdGenerator extends BaseObject {
 
 	private String tableName;
 
-	private Integer seqno;
+	private long seqno;
 
 	public String getTableName() {
 		return tableName;
@@ -21,11 +21,11 @@ public class IdGenerator extends BaseObject {
 		this.tableName = tableName;
 	}
 
-	public Integer getSeqno() {
+	public Long getSeqno() {
 		return seqno;
 	}
 
-	public void setSeqno(Integer seqno) {
+	public void setSeqno(Long seqno) {
 		this.seqno = seqno;
 	}
 	

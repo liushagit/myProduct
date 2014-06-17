@@ -9,7 +9,7 @@ import java.util.Map;
 public class GlobalGenerator {
 
 	
-	public Integer getReusedIdForNewObj(String tableName) {
+	public long getReusedIdForNewObj(String tableName) {
 		return getId(tableName);
 	}
 
@@ -25,7 +25,7 @@ public class GlobalGenerator {
 	}
 
 	
-	private Integer getId(String tabelName) {
+	private long getId(String tabelName) {
 		IdGenerator idGenerator = idMap.get(tabelName);
 		if (idGenerator == null) {
 			synchronized (tabelName.intern()) {
@@ -34,7 +34,7 @@ public class GlobalGenerator {
 					idGenerator = new IdGenerator();
 					idGenerator.setTableName(tabelName);
 					int maxId = DBService.getOperaThread().getMaxId(tabelName);
-					int seqno = (maxId == -1 ? 1 : maxId + 1);
+					long seqno = (maxId == -1 ? 1 : maxId + 1);
 					idGenerator.setSeqno(seqno);
 					idMap.put(tabelName, idGenerator);
 				}
@@ -42,7 +42,7 @@ public class GlobalGenerator {
 		}
 
 		synchronized (idGenerator) {
-			Integer id = idGenerator.getSeqno();
+			long id = idGenerator.getSeqno();
 			id++;
 			idGenerator.setSeqno(id);
 			return id;

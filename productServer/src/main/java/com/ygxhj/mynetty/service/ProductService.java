@@ -61,9 +61,11 @@ public class ProductService {
 		checkProduct(productId, name, destance, number);
 		Product product = getExitProduct(productId);
 		if (product == null) {
-			product = createProduct(productId, name, destance,price,discount,deductPrice);
+			product = createProduct(player,productId, name, destance,price,discount,deductPrice);
 		}
-		
+		if (player.getId().longValue() != product.getPlayerId().longValue()) {
+			throw new ProductException("产品所属错误，请重新创建！");
+		}
 		product.addNumber(number);
 		product.setLastUpdate(new Date());
 		product.setDestance(destance);
@@ -91,9 +93,9 @@ public class ProductService {
 			throw new ProductException("product info error!!");
 		}
 	}
-	private static Product createProduct(String productId ,String name,String destance,int price,int discount,int deductPrice) throws ProductException{
+	private static Product createProduct(Player player,String productId ,String name,String destance,int price,int discount,int deductPrice) throws ProductException{
 		Product product = new Product();
-		int id = GlobalGenerator.getInstance().getReusedIdForNewObj(product.tableName);
+		long id = GlobalGenerator.getInstance().getReusedIdForNewObj(product.tableName);
 		if (id <= 0) {
 			throw new ProductException("get product id error");
 		}
@@ -108,6 +110,7 @@ public class ProductService {
 		product.setPrice(price);
 		product.setDeductPrice(deductPrice);
 		product.setDiscount(discount);
+		product.setPlayerId(player.getId());
 		return product;
 	}
 	
@@ -123,4 +126,9 @@ public class ProductService {
 		
 		DBService.commit(product);
 	}
+	
+	public static List<Product> getProductByPlayer(Player player){
+		return player.getPlayerProduct();
+	}
+
 }

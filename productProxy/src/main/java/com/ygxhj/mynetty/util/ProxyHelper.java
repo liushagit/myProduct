@@ -14,6 +14,7 @@ public class ProxyHelper {
 
 	public static String REGEX_FILE="";
 	public static String TEMPLATE_DIR="";
+	public static String UNDER_LINE = "_";
 	
 	private static String TEMPLATE_DOAMAIN = "TemplateFile";
 	private static RegexMatch.MatchDomain TEMPLATE_CONF;

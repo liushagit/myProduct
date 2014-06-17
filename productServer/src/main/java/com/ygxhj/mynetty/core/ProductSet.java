@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.jboss.netty.util.internal.ConcurrentHashMap;
 
+import com.ygxhj.mynetty.core.model.Player;
 import com.ygxhj.mynetty.core.model.Product;
 
 public class ProductSet {
@@ -31,5 +32,5 @@ public class ProductSet {
 		}
 		productSet.put(product.getProductId(), product);
 	}
-
+	
 }

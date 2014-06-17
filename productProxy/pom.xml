@@ -14,7 +14,7 @@
  <dependencies>
 	<dependency>
 		<groupId>com.ygxhj</groupId>
-		<artifactId>productCommon</artifactId>
+		<artifactId>productServer</artifactId>
 	</dependency>
 	<dependency>
 			<groupId>javax.servlet</groupId>

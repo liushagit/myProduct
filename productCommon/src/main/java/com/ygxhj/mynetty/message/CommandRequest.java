@@ -10,7 +10,7 @@ public class CommandRequest implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String cmd;
-	private int playerId;
+	private long playerId;
 	private String[] ps;
 
 	public String getCmd() {
@@ -21,11 +21,11 @@ public class CommandRequest implements Serializable {
 		this.cmd = cmd;
 	}
 
-	public int getPlayerId() {
+	public long getPlayerId() {
 		return playerId;
 	}
 
-	public void setPlayerId(int playerId) {
+	public void setPlayerId(long playerId) {
 		this.playerId = playerId;
 	}
 

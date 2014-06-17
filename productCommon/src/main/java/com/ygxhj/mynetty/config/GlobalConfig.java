@@ -60,10 +60,6 @@ public class GlobalConfig {
 
 	}
 
-	public static Zone getZone() {
-		return getZone("0");
-	}
-
 	public static Zone getZone(String zoneId) {
 		return zones.get(zoneId);
 	}

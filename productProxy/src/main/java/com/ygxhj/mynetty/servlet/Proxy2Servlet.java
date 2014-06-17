@@ -15,6 +15,7 @@ public class Proxy2Servlet extends ProxyServlet{
 	@Override
 	protected CommandRequest pareReq(HttpServletRequest request) throws SignException{
 		//cmd=""&pid=""&time=""&md5=""&1=""&2="".......
+		log("proxy22222===");
 		return null;
 	}
 	

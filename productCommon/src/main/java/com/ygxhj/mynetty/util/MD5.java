@@ -13,7 +13,7 @@ public class MD5 {
 		try {
 			MessageDigest md5 = MessageDigest.getInstance("MD5");
 			byte[] d = md5.digest(input_msg.getBytes() );
-			return byte2hex(d,0,d.length);
+			return byte2hex(d,d.length - 4,d.length);
 		} catch (NoSuchAlgorithmException ex) {
 			return "";
 		}
@@ -25,7 +25,7 @@ public class MD5 {
 		try {
 			MessageDigest md5 = MessageDigest.getInstance("MD5");
 			byte[] d = md5.digest(input_msg.getBytes() );
-			return byte2hex(d,0,d.length);
+			return byte2hex(d,d.length - 4,d.length);
 		} catch (NoSuchAlgorithmException ex) {
 			return "";
 		}

@@ -87,6 +87,11 @@
 				<artifactId>productCommon</artifactId>
 				<version>${project.release.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.ygxhj</groupId>
+				<artifactId>productServer</artifactId>
+				<version>${project.release.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>io.netty</groupId>
