@@ -11,6 +11,7 @@ public class CommandRequest implements Serializable {
 
 	private String cmd;
 	private long playerId;
+
 	private String[] ps;
 
 	public String getCmd() {

@@ -91,7 +91,7 @@ public class ProxyServlet extends HttpServlet {
 		}
 	}
 	
-	protected CommandRequest pareReq(HttpServletRequest request) throws SignException{
+	protected CommandRequest pareReq(HttpServletRequest request) throws SignException,ServletException{
 		CommandRequest req = new CommandRequest();
 		String query = request.getQueryString();
 		try {

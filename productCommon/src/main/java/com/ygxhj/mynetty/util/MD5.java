@@ -31,6 +31,17 @@ public class MD5 {
 		}
 	}
 	
+	public static String encodeAll(String input,String key) {
+		String input_msg = input + key;
+		try {
+			MessageDigest md5 = MessageDigest.getInstance("MD5");
+			byte[] d = md5.digest(input_msg.getBytes() );
+			return byte2hex(d,0,d.length);
+		} catch (NoSuchAlgorithmException ex) {
+			return "";
+		}
+	}
+	
 	private static String byte2hex(byte[] b, int start, int end) {
 		//一个字节的数， 转成16进制字符串   
 
