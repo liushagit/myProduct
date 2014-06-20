@@ -1,0 +1,28 @@
+CREATE TABLE `player` (
+  `id` bigint(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `create_time` datetime NOT NULL,
+  `login_time` datetime NOT NULL,
+  `password` varchar(255) NOT NULL COMMENT '玩家密码',
+  `group_id` int(11) NOT NULL DEFAULT '1' COMMENT '玩家权限',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `product` (
+  `id` bigint(11) NOT NULL,
+  `product_id` varchar(255) NOT NULL COMMENT '产品编号',
+  `name` varchar(255) NOT NULL COMMENT '产品名称',
+  `create_time` datetime NOT NULL,
+  `product_num` int(11) NOT NULL COMMENT '产品数量',
+  `destance` varchar(255) NOT NULL COMMENT '产品描述',
+  `last_update` datetime NOT NULL COMMENT '最近更新时间',
+  `price` int(11) NOT NULL COMMENT '价格',
+  `discount` int(11) NOT NULL COMMENT '折扣百分比',
+  `deduct_price` int(11) NOT NULL COMMENT '优惠价格',
+  `player_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `player_id` (`player_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
