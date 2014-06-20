@@ -1,6 +1,5 @@
 package com.ygxhj.mynetty.server.command.player;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import com.ygxhj.mynetty.core.dao.PlayerDAO;
@@ -34,7 +33,7 @@ public class LoginCmd extends Command{
 			e.printStackTrace();
 		}
 		
-		String password = MD5.encodeAll(ps[1], "");
+		String password = MD5.encode(ps[1], "");
 		
 		String pp = p.getPassword();
 		if (!password.equals(pp)) {

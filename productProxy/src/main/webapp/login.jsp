@@ -9,9 +9,10 @@
 <body>
 <form id="form" class="form"  method="post" action="g">
 	<input type="hidden" id="cmd" name="cmd" value="u_L"/> 
-	用户名：<input type="text" id="1" name="1" /> 
-	密  码：<input type="password" id="2" name="2" /> 
-	<input type="submit" value="提交" />
+	用户名：<input type="text" id="1" name="1" /> <br/>
+	密  码：<input type="password" id="2" name="2" /> <br/>
+	<input type="submit" value="登录" /> <a href="/p?u_R">注册</a><br/>
 </form >
+
 </body>
 </html>

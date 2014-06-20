@@ -20,6 +20,7 @@ public class ProxyHelper {
 	private static RegexMatch.MatchDomain TEMPLATE_CONF;
 	private static Configuration FREEMARKER_CONF;
 	public static String MSG_CHARSET;
+	public static String REGISTER_CMD = "u_R";
 	
 	/**
 	 * 初始化freemark

@@ -4,7 +4,7 @@
     <td height="60" colspan="2">头</td>
   </tr>
   <tr>
-    <td width="10%" height="100%">左</td>
+    <td width="10%" height="100%" align="left" ><#include "/product/product_left.ftl"></td>
     <td>右</td>
   </tr>
   <tr>

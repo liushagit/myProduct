@@ -61,6 +61,13 @@ public class ProxyServlet extends HttpServlet {
 			return;
 		}
 		
+		if (req.getCmd().equals(ProxyHelper.REGISTER_CMD)) {
+			CommandResult result1 = new CommandResult();
+			result1.setCmd(ProxyHelper.REGISTER_CMD);
+			template(result1, out);
+			return;
+		}
+		
 		Client client = ClientSet.getInstance().getClient();
 		client.sendObject(req);
 		ClientSet.getInstance().backClient(client);
@@ -83,11 +90,20 @@ public class ProxyServlet extends HttpServlet {
 		log(result.toString());
 		
 		addSign(req, result);
-		Template t = ProxyHelper.getTemplate(result);
+		template(result, out);
+		
+	}
+	
+	private void template(CommandResult result,PrintWriter out){
 		try {
-			t.process(result.getVo(), out);
-		} catch (TemplateException e) {
-			e.printStackTrace();
+			Template t = ProxyHelper.getTemplate(result);
+			try {
+				t.process(result.getVo(), out);
+			} catch (TemplateException e) {
+				e.printStackTrace();
+			}
+			
+		} catch (Exception e) {
 		}
 	}
 	
@@ -102,6 +118,10 @@ public class ProxyServlet extends HttpServlet {
 		//cmd/pid_time_md5/ps....
 		String qs[] = query.split("/");
 		String cmd = qs[0];
+		if (ProxyHelper.REGISTER_CMD.equals(cmd)) {
+			req.setCmd(cmd);
+			return req; 
+		}
 		String ms[] = qs[1].split(ProxyHelper.UNDER_LINE);
 		long pid = Long.parseLong(ms[0]);
 		String time = ms[1];
