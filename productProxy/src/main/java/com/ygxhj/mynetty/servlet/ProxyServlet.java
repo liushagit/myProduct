@@ -90,7 +90,7 @@ public class ProxyServlet extends HttpServlet {
 		
 		if("statu_no_player".equals(result.getStatus())){
 			Zone zone = GlobalConfig.getZone(GlobalConfig.zoneId);
-			String url = "http://" + zone.getProxyHost()+ ":" + zone.getProxyPort()+"/login.jsp";
+			String url = "http://" + zone.getProxyHost()+ ":" + zone.getProxyPort();
 			log("url==" + url);
 			response.sendRedirect(url);
 			return;
