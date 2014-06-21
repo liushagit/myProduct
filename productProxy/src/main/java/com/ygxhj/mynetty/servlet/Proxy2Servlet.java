@@ -37,7 +37,7 @@ public class Proxy2Servlet extends ProxyServlet{
 			ps.add(p);
 		}
 		
-		if(!"u_L".equals(cmd)){
+		if(!"u_L".equals(cmd) && !"u_CP".equals(cmd)){
 			String ss[] = sign.split(ProxyHelper.UNDER_LINE);
 			String md5Word = ss[0] + ss[1];
 			Zone zone = GlobalConfig.getZone(GlobalConfig.zoneId);

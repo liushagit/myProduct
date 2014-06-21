@@ -74,7 +74,7 @@ public class PlayerSet {
 		try {
 			List<Product> list = dao.selectByExample(example);
 			for(Product p : list){
-				player.getPlayerProduct().put(p.getId(), p);
+				player.getPlayerProduct().put(p.getProductId(), p);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

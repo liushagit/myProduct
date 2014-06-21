@@ -27,27 +27,27 @@ public class ProductService {
 	 * @param productId
 	 * @return
 	 */
-	public static Product getExitProduct(String productId){
-		Product product = ProductSet.getInstance().getProduct(productId);
-		if (product == null) {
-			ProductDAO dao = (ProductDAO) DBManager.getDao(ProductDAOImpl.class);
-			ProductExample example = new ProductExample();
-			example.createCriteria().andProductIdEqualTo(productId);
-			try {
-				List<Product> list = dao.selectByExample(example);
-				if (list != null && list.size() > 0) {
-					product = list.get(0);
-				}
-				if (product != null) {
-					ProductSet.getInstance().addProduct(product);;
-				}
-			} catch (Exception e) {
-				logger.error("quary product exception", e);
-				return null;
-			}
-		}
-		return product;
-	}
+//	public static Product getExitProduct(String productId){
+//		Product product = ProductSet.getInstance().getProduct(productId);
+//		if (product == null) {
+//			ProductDAO dao = (ProductDAO) DBManager.getDao(ProductDAOImpl.class);
+//			ProductExample example = new ProductExample();
+//			example.createCriteria().andProductIdEqualTo(productId);
+//			try {
+//				List<Product> list = dao.selectByExample(example);
+//				if (list != null && list.size() > 0) {
+//					product = list.get(0);
+//				}
+//				if (product != null) {
+//					ProductSet.getInstance().addProduct(product);;
+//				}
+//			} catch (Exception e) {
+//				logger.error("quary product exception", e);
+//				return null;
+//			}
+//		}
+//		return product;
+//	}
 	
 	/**
 	 * 添加一个产品
@@ -60,7 +60,7 @@ public class ProductService {
 	 */
 	public static Product addProduct(Player player,String productId ,String name,String destance,int number,int price,int discount,int deductPrice)throws ProductException{
 		checkProduct(productId, name, destance, number);
-		Product product = getExitProduct(productId);
+		Product product = player.getPlayerProduct().get(productId);
 		if (product == null) {
 			product = createProduct(player,productId, name, destance,price,discount,deductPrice);
 		}
@@ -76,7 +76,7 @@ public class ProductService {
 		product.setDiscount(discount);
 		
 		DBService.commit(product);
-		player.getPlayerProduct().put(product.getId(), product);
+		player.getPlayerProduct().put(product.getProductId(), product);
 		return product;
 	}
 	
@@ -117,7 +117,7 @@ public class ProductService {
 	}
 	
 	public static void consumProduct(Player player,String productId,int number) throws ProductException{
-		Product product = getExitProduct(productId);
+		Product product = player.getPlayerProduct().get(productId);
 		if (product == null) {
 			throw new ProductException("产品不存在，请选择其他产品！");
 		}

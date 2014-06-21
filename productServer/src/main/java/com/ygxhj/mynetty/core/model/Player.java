@@ -165,13 +165,13 @@ public class Player extends BaseObject {
 		this.lastMessage = lastMessage;
 	}
 	
-	private Map<Long,Product> playerProduct = new HashMap<Long,Product>();
+	private Map<String,Product> playerProduct = new HashMap<String,Product>();
 
-	public Map<Long, Product> getPlayerProduct() {
+	public Map<String, Product> getPlayerProduct() {
 		return playerProduct;
 	}
 
-	public void setPlayerProduct(Map<Long, Product> playerProduct) {
+	public void setPlayerProduct(Map<String, Product> playerProduct) {
 		this.playerProduct = playerProduct;
 	}
 

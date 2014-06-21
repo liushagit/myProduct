@@ -25,12 +25,17 @@ public class CreatePlayerCmd extends BaseCmd{
 
 	@Override
 	public CommandResult exec(CommandRequest request) throws ProductException {
+		CommandResult result = new CommandResult();
 		String name = request.getPs()[0];
 		String password = request.getPs()[1];
 		String passwordAgin = request.getPs()[2];
 		int group = Integer.parseInt(request.getPs()[3]);
 		checkPlayerMessage(name, password,passwordAgin);
-		checkName(name);
+		boolean exists = checkName(name);
+		if(exists){
+			result.setCmd("u_R");
+			return result;
+		}
 		password = MD5.encode(password,"");
 		Player player = new Player();
 		Date date = new Date();
@@ -46,24 +51,26 @@ public class CreatePlayerCmd extends BaseCmd{
 		data.put(PARAM_COMMAND_NAME, "u_L");
 		data.put(PARAM_PLAYER_ID, String.valueOf(player.getId()));
 		data.put(PARAM, player.getName()+"/"+passwordAgin);
-		CommandResult result = callOtherCmd(data);
+		result = callOtherCmd(data);
 		result.setCmd("u_L");
 		return result;
 	}
 	
-	private void checkName(String name) throws ProductException{
+	private boolean checkName(String name) throws ProductException{
 		PlayerExample example = new PlayerExample();
 		example.createCriteria().andNameEqualTo(name);
 		PlayerDAO dao = (PlayerDAO) DBManager.getDao(PlayerDAOImpl.class);
 		try {
 			List<Player> list = dao.selectByExample(example);
 			if( list != null && list.size() > 0){
-				throw new ProductException(name + " exists!");
+				return true;
 			}
 			
 		} catch (SQLException e) {
-			throw new ProductException("db error");
+			return true;
 		}
+		
+		return false;
 	}
 	
 	private void checkPlayerMessage(String name,String password,String passwordAgin) throws ProductException{

@@ -178,11 +178,13 @@ public class ProxyServlet extends HttpServlet {
 		String time = Integer.toHexString((int) (System.currentTimeMillis() / 1000));
 		StringBuffer sb = new StringBuffer();
 		long pid = reqCmd.getPlayerId();
-		if(reqCmd.getPlayerId() <= 0){
+		if(reqCmd.getPlayerId() <= 0 && result.getVo("label_player_id") != null){
 			sb.append(result.getVo("label_player_id"));
 			pid = Long.parseLong(result.getVo("label_player_id").toString());
-		}else{
+		}else if(reqCmd.getPlayerId() > 0){
 			sb.append(reqCmd.getPlayerId());
+		}else{
+			return;
 		}
 		sb.append(ProxyHelper.UNDER_LINE).append(time);
 		Zone zone = GlobalConfig.getZone(GlobalConfig.zoneId);
