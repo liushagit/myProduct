@@ -87,8 +87,14 @@ public class ProxyServlet extends HttpServlet {
 			//TODO 转向
 			return;
 		}
-		log(result.toString());
 		
+		if("statu_no_player".equals(result.getStatus())){
+			Zone zone = GlobalConfig.getZone(GlobalConfig.zoneId);
+			String url = "http://" + zone.getProxyHost()+ ":" + zone.getProxyPort()+"/login.jsp";
+			log("url==" + url);
+			response.sendRedirect(url);
+			return;
+		}
 		addSign(req, result);
 		template(result, out);
 		
@@ -98,7 +104,7 @@ public class ProxyServlet extends HttpServlet {
 		try {
 			Template t = ProxyHelper.getTemplate(result);
 			try {
-				t.process(result.getVo(), out);
+				t.process(result.getData(), out);
 			} catch (TemplateException e) {
 				e.printStackTrace();
 			}
@@ -150,7 +156,7 @@ public class ProxyServlet extends HttpServlet {
 		Zone zone = GlobalConfig.getZone(GlobalConfig.zoneId);
 //		if (!cmd.equals("p_CP")) {
 			checkMd5(md5Word.toString(), sign,zone.getMd5Key());
-			checkMd5(md5All.toString(), signAll,"");
+			checkMd5(md5All.toString(), signAll,zone.getMd5Key());
 //		}
 		
 		req.setPlayerId(pid);
@@ -160,7 +166,7 @@ public class ProxyServlet extends HttpServlet {
 		
 	}
 	
-	private void checkMd5(String md5Word,String sign,String key) throws SignException{
+	protected void checkMd5(String md5Word,String sign,String key) throws SignException{
 		String si = MD5.encode(md5Word, key);
 		if (!si.equals(sign)) {
 			throw new SignException("书签校验错误！");
@@ -170,13 +176,19 @@ public class ProxyServlet extends HttpServlet {
 	
 	protected void addSign(CommandRequest reqCmd, CommandResult result){
 		String time = Integer.toHexString((int) (System.currentTimeMillis() / 1000));
-		String sign = reqCmd.getPlayerId() + ProxyHelper.UNDER_LINE + time;
+		StringBuffer sb = new StringBuffer();
+		long pid = reqCmd.getPlayerId();
+		if(reqCmd.getPlayerId() <= 0){
+			sb.append(result.getVo("label_player_id"));
+			pid = Long.parseLong(result.getVo("label_player_id").toString());
+		}else{
+			sb.append(reqCmd.getPlayerId());
+		}
+		sb.append(ProxyHelper.UNDER_LINE).append(time);
 		Zone zone = GlobalConfig.getZone(GlobalConfig.zoneId);
-		String si = MD5.encode(reqCmd.getPlayerId() + time, zone.getMd5Key());
-		sign = sign + ProxyHelper.UNDER_LINE + si;
-		result.setVo("sign", sign);
-		log("sign==" + sign);
-		
+		String si = MD5.encode(pid + time, zone.getMd5Key());
+		sb.append(ProxyHelper.UNDER_LINE).append(si);
+		result.setVo("sign", sb.toString());
 	}
 
 }

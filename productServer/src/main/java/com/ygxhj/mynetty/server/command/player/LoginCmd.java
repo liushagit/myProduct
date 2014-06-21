@@ -2,6 +2,7 @@ package com.ygxhj.mynetty.server.command.player;
 
 import java.util.List;
 
+import com.ygxhj.mynetty.core.PlayerSet;
 import com.ygxhj.mynetty.core.dao.PlayerDAO;
 import com.ygxhj.mynetty.core.dao.PlayerDAOImpl;
 import com.ygxhj.mynetty.core.model.Player;
@@ -39,7 +40,8 @@ public class LoginCmd extends Command{
 		if (!password.equals(pp)) {
 			throw new ProductException("密码错误，请重新登录");
 		}
-		
+		PlayerSet.getInstance().getPlayer(p.getId());
+		result.setVo("label_player_id", p.getId());
 		return result;
 	}
 

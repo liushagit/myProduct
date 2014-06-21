@@ -1,6 +1,9 @@
 package com.ygxhj.mynetty.server.command.product;
 
+import java.util.List;
+
 import com.ygxhj.mynetty.core.model.Player;
+import com.ygxhj.mynetty.core.model.Product;
 import com.ygxhj.mynetty.exception.ProductException;
 import com.ygxhj.mynetty.message.CommandResult;
 import com.ygxhj.mynetty.server.command.BaseCmd;
@@ -12,7 +15,11 @@ public class MyProductCmd extends BaseCmd{
 	public CommandResult done(Player player, String[] ps)
 			throws ProductException {
 		CommandResult result = new CommandResult();
-		result.setVo("label_products", ProductService.getProductByPlayer(player));
+		List<Product> list = ProductService.getProductByPlayer(player);
+		if (list != null && list.size() > 0) {
+			result.setVo("label_products", list);
+		}
+		result.setVo("label_center", 1);
 		return result;
 	}
 

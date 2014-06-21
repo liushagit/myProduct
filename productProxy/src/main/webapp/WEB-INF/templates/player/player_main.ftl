@@ -4,8 +4,8 @@
     <td height="60" colspan="2">头</td>
   </tr>
   <tr>
-    <td width="10%" height="100%" align="left" ><#include "/product/product_left.ftl"></td>
-    <td>右</td>
+    <td valign="top" width="10%" height="100%" align="left" ><#include "/product/product_left.ftl"></td>
+    <td valign="top"><#include "/product/product_right.ftl"></td>
   </tr>
   <tr>
     <td height="60" colspan="2">下</td>

@@ -28,6 +28,7 @@ public class GlobalConfig {
 				Zone zone = new Zone();
 				zone.setId(e.attributeValue("id"));
 				zone.setName(e.attributeValue("name"));
+				zone.setPoint(Integer.parseInt(e.attributeValue("point")));
 				zone.setMaxPlayerNum(Integer.parseInt(e
 						.attributeValue("maxPlayerNum")));
 
@@ -51,7 +52,7 @@ public class GlobalConfig {
 				zone.setProxyHost(proxy.attributeValue("host"));
 				zone.setProxyPort(Integer.parseInt(proxy.attributeValue("port")));
 				zone.setMd5Key(proxy.attributeValue("md5Key"));
-
+				MD5.ZONE_KEY = zone.getMd5Key();
 				zones.put(zone.getId(), zone);
 			}
 		} catch (Exception e) {

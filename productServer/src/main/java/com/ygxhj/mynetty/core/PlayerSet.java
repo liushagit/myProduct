@@ -71,7 +71,10 @@ public class PlayerSet {
 		example.createCriteria().andPlayerIdEqualTo(player.getId());
 		ProductDAO dao = (ProductDAO) DBManager.getDao(ProductDAOImpl.class);
 		try {
-			player.setPlayerProduct(dao.selectByExample(example));
+			List<Product> list = dao.selectByExample(example);
+			for(Product p : list){
+				player.getPlayerProduct().put(p.getId(), p);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

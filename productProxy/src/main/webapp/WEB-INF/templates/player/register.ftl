@@ -16,7 +16,7 @@
   </tr>
   <tr>
     <td><input type="submit" value="注册" /> </td>
-    <td><input type="button" value="清空" /> </td>
+    <td><input type="reset" value="清空" /> </td>
   </tr>
 </table>
 </form>

@@ -1,4 +1,3 @@
-<#include "/include/header.ftl">
 <#if label_products?exists>
 <table border="1">
  			<th>名字</th>
@@ -21,4 +20,3 @@
 <#else>
 产品不存在
 </#if>
-<#include "/include/footer.ftl">

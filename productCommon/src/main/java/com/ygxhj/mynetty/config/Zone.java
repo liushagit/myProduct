@@ -4,6 +4,7 @@ public class Zone {
 
 	private String id;
 	private String name;
+	private int point;
 	private int maxPlayerNum;
 	private String proxyHost;
 	private int proxyPort;
@@ -154,5 +155,13 @@ public class Zone {
 
 	public void setDbDelaytime(int dbDelaytime) {
 		this.dbDelaytime = dbDelaytime;
+	}
+	
+	public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int point) {
+		this.point = point;
 	}
 }

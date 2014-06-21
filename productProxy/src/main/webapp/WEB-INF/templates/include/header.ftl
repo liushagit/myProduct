@@ -2,7 +2,7 @@
 <html>
 <head>
 <#include "/include/config.ftl">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <title>${game_title}</title>
 </head>
 <body>
