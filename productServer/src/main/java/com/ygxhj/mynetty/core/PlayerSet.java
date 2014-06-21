@@ -42,6 +42,7 @@ public class PlayerSet {
 				playerSet.put(player.getId(), player);
 			}
 		}
+		player.setLastMessage(System.currentTimeMillis());
 		return player;
 	}
 	
@@ -89,6 +90,7 @@ public class PlayerSet {
 		}
 		for (long id : offlinePlayer) {
 			playerSet.remove(id);
+			log.info("clean player " + id);
 		}
 	}
 	

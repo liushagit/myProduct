@@ -29,7 +29,7 @@ public abstract class BaseCmd extends Command{
 			CommandResult result = new CommandResult("statu_no_player");
 			return result;
 		}
-		log.info("status|" + cmd + "|" + player.getId());
+		player.setLastMessage(System.currentTimeMillis());
 		
 		return done(player, request.getPs());
 	}

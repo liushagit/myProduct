@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import com.ygxhj.mynetty.config.GlobalConfig;
 import com.ygxhj.mynetty.config.Zone;
 import com.ygxhj.mynetty.server.command.CommandSet;
+import com.ygxhj.mynetty.task.CleanTask;
 import com.ygxhj.mynetty.work.WorkThread;
 //import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
@@ -47,13 +48,15 @@ public class GameServer {
 		//4、初始化DB
 		DBInit.initDB();
 		//5、初始化资源
-		log.info("init GameServer end " + (System.currentTimeMillis() - begin) + "ms");
 		
 		
 		//6、开启workthread
 		for (int i = 0; i < 8; i++) {
 			new WorkThread().start();
 		}
+		new CleanTask().start();
+		log.info("init GameServer end " + (System.currentTimeMillis() - begin) + "ms");
+		
 	}
 	
 	
