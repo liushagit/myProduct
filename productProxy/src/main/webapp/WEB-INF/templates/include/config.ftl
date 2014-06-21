@@ -27,6 +27,6 @@
    <#if xx_index = 1><#local cmd2 = xx/></#if>
    <#if xx_index = 2><#local cmd2 = xx/></#if>
 </#list>
-<#local newUrl = "/"+cmd+"/"+sign+"-"+MD5.encode(cmd2,sign+param)+"/"+param />
+<#local newUrl = "/"+cmd+"/"+sign+"-"+MD5.encodeZone(cmd2 + sign+param)+"/"+param />
 </#if>
 <#if label_contextPath?exists && label_contextPath != ''>${label_contextPath}${newUrl}<#else>${newUrl}</#if></#macro>

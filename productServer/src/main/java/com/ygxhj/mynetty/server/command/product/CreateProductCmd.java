@@ -12,10 +12,12 @@ public class CreateProductCmd extends BaseCmd{
 
 	@Override
 	public CommandResult done(Player player, String ps[]) throws ProductException {
-		if (ps == null || ps.length < 4) {
-			throw new ProductException("create product ps is error!");
-		}
 		CommandResult result = new CommandResult();
+		result.setVo("label_center", 2);
+		if (ps == null || ps.length < 4) {
+			result.setVo("label_create", "");
+			return result;
+		}
 		String productId = ps[0];
 		String name = ps[1];
 		String destance = ps[2];

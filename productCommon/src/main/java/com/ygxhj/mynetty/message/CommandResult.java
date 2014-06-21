@@ -29,11 +29,14 @@ public class CommandResult implements Serializable{
 	public void setCmd(String cmd) {
 		this.cmd = cmd;
 	}
-	public Map<String, Object> getVo() {
+	public Map<String, Object> getData() {
 		return vo;
 	}
 	public void setVo(String label,Object object) {
 		vo.put(label, object);
+	}
+	public Object getVo(String label){
+		return vo.get(label);
 	}
 	public String getStatus() {
 		return status;

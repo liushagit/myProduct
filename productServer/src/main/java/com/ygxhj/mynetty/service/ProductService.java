@@ -1,5 +1,6 @@
 package com.ygxhj.mynetty.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -75,6 +76,7 @@ public class ProductService {
 		product.setDiscount(discount);
 		
 		DBService.commit(product);
+		player.getPlayerProduct().put(product.getId(), product);
 		return product;
 	}
 	
@@ -128,7 +130,9 @@ public class ProductService {
 	}
 	
 	public static List<Product> getProductByPlayer(Player player){
-		return player.getPlayerProduct();
+		List<Product> list = new ArrayList<Product>();
+		list.addAll(player.getPlayerProduct().values());
+		return list;
 	}
 
 }

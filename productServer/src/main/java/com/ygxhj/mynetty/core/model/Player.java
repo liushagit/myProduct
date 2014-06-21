@@ -4,7 +4,9 @@ import com.ygxhj.mynetty.core.BaseObject;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Player extends BaseObject {
     /**
@@ -163,13 +165,14 @@ public class Player extends BaseObject {
 		this.lastMessage = lastMessage;
 	}
 	
-	private List<Product> playerProduct = new ArrayList<Product>();
+	private Map<Long,Product> playerProduct = new HashMap<Long,Product>();
 
-	public void setPlayerProduct(List<Product> playerProduct) {
+	public Map<Long, Product> getPlayerProduct() {
+		return playerProduct;
+	}
+
+	public void setPlayerProduct(Map<Long, Product> playerProduct) {
 		this.playerProduct = playerProduct;
 	}
 
-	public List<Product> getPlayerProduct() {
-		return playerProduct;
-	}
 }

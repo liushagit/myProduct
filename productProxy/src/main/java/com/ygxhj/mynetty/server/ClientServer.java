@@ -23,7 +23,7 @@ public class ClientServer {
 
 		// 2、初始化netty
 		beginPre = System.currentTimeMillis();
-		Client client = new Client(zone.getProxyHost(), zone.getProxyPort());
+		Client client = new Client(zone.getProxyHost(), zone.getPoint());
 		ClientSet.getInstance().backClient(client);
 
 		log.debug("init GlobalConfig end "

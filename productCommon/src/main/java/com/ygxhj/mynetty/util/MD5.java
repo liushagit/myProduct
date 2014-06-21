@@ -6,10 +6,22 @@ import java.security.NoSuchAlgorithmException;
 public class MD5 {
 
 	public static String KEY = "0fRI;$zn,y0e3LHQZD^i@I/)w4%=9(28rsjp)V3aJ3#jfEiDeCNx=BTIQ#u:cW!Jxo0bR1EaQ=,6KV2u,zFuBpgC6bu6$S;by0bxMxM)DEurzG(:v)F83wmvOPwxJHoT2R)fNG3!Rqb*+l#-pnZOB3/-76K";
+	public static String ZONE_KEY = "0fRI;$zn,y0e3LHQZD^i@I/)w4%=9(28rsjp)V3aJ3#jfEiDeCNx=BTIQ#u:cW!Jxo0bR1EaQ=,6KV2u,zFuBpgC6bu6$S;by0bxMxM)DEurzG(:v)F83wmvOPwxJHoT2R)fNG3!Rqb*+l#-pnZOB3/-76K";
 
 
 	public static String encode(String input) {
 		String input_msg = input + KEY;
+		try {
+			MessageDigest md5 = MessageDigest.getInstance("MD5");
+			byte[] d = md5.digest(input_msg.getBytes() );
+			return byte2hex(d,d.length - 4,d.length);
+		} catch (NoSuchAlgorithmException ex) {
+			return "";
+		}
+	}
+	
+	public static String encodeZone(String input) {
+		String input_msg = input + ZONE_KEY;
 		try {
 			MessageDigest md5 = MessageDigest.getInstance("MD5");
 			byte[] d = md5.digest(input_msg.getBytes() );

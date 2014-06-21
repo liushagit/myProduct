@@ -40,8 +40,8 @@ public class GameServer {
 		log.debug("init GlobalConfig begin");
 		beginPre = System.currentTimeMillis();
 		NettyServer server = new NettyServer();
-		server.init(zone.getProxyHost() ,zone.getProxyPort());
-		log.info("init netty server :" + zone.getProxyHost() + ":" + zone.getProxyPort());
+		server.init(zone.getProxyHost() ,zone.getPoint());
+		log.info("init netty server :" + zone.getProxyHost() + ":" + zone.getPoint());
 		log.debug("init NettyServer end " + (System.currentTimeMillis() - beginPre) + "ms");
 		
 		//4、初始化DB
